@@ -27,9 +27,9 @@ public class SimpleController {
 
         Map<String, Object> result = new HashMap<String,Object>();
         result.put("counter", counter);
-        result.put("url", System.getenv("url"));
-        result.put("username", System.getenv("username"));
-        result.put("password", System.getenv("password"));
+        result.put("URL_POSTGRES", System.getenv("URL_POSTGRES"));
+        result.put("USERNAME_POSTGRES", System.getenv("USERNAME_POSTGRES"));
+        result.put("PASSWORD_POSTGRES", System.getenv("PASSWORD_POSTGRES"));
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
