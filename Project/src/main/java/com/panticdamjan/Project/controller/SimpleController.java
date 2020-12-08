@@ -23,10 +23,10 @@ public class SimpleController {
 
     @GetMapping(path = "", produces = "application/json")
     public ResponseEntity getUser() {
-//        int counter = simpleService.incrementCounter();
+        int counter = simpleService.incrementCounter();
 
         Map<String, Object> result = new HashMap<String,Object>();
-//        result.put("counter", counter);
+        result.put("counter", counter);
         result.put("URL_POSTGRES", System.getenv("URL_POSTGRES"));
         result.put("USERNAME_POSTGRES", System.getenv("USERNAME_POSTGRES"));
         result.put("PASSWORD_POSTGRES", System.getenv("PASSWORD_POSTGRES"));

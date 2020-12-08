@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+
+  project:
+    build: ./Project
+    ports:
+      - "8080:8080"
+    env_file: 
+      - ./project.env
+    environment: 
+      - DATABASE_DOMAIN=postgres
+    volumes: 
+      - postgresDB:/var/lib/postgresql/data
+    links:
+      - postgres
+
+  postgres:
+    image: 'postgres'
+    ports:
+      - "5433:5432"
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=SimpleApp
+
+volumes:
+  postgresDB:

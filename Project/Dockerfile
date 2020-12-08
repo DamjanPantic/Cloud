@@ -1,6 +1,6 @@
 FROM maven:3.6.3-ibmjava-8-alpine AS app
 WORKDIR /usr/src/project
-COPY /Project .
+COPY . .
 RUN mvn package -DskipTests
 
 FROM openjdk:8-jdk-alpine

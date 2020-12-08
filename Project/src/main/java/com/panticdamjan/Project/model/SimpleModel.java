@@ -5,19 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-//import javax.persistence.*;
-//
-//@Entity(name ="counters")
-//@Table
+import javax.persistence.Column;
+
+import javax.persistence.*;
+
+@Entity(name ="counters")
+@Table
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class SimpleModel {
 
-//    @Id
+    @Id
     private Long id;
 
-//    @Column(name = "counter", nullable = false)
+    @Column(name = "counter", nullable = false)
     private int counter;
 }
