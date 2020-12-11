@@ -9,8 +9,6 @@ services:
       - ./project.env
     environment: 
       - DATABASE_DOMAIN=postgres
-    volumes: 
-      - postgresDB:/var/lib/postgresql/data
     links:
       - postgres
 
@@ -23,6 +21,8 @@ services:
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=SimpleApp
+    volumes: 
+      - postgresDB:/var/lib/postgresql/data
 
 volumes:
   postgresDB:
