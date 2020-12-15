@@ -68,5 +68,11 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
 
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 5433, host: 5433
+
+  config.vm.provision "file", source: "Project", destination: "Project"
+  config.vm.provision "file", source: "project.env", destination: "project.env"
+  config.vm.provision "file", source: "docker-compose.yml", destination: "docker-compose.yml"
   config.vm.provision :shell, path: "script.sh"
 end
