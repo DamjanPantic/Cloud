@@ -3,6 +3,7 @@ services:
 
   project:
     build: ./Project
+    container_name: project
     ports:
       - "8080:8080"
     env_file: 
@@ -23,6 +24,14 @@ services:
       - POSTGRES_DB=SimpleApp
     volumes: 
       - postgresDB:/var/lib/postgresql/data
+    
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    links:
+      - project
+
 
 volumes:
   postgresDB:
