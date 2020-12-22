@@ -30,6 +30,7 @@ public class SimpleController {
         result.put("URL_POSTGRES", System.getenv("URL_POSTGRES"));
         result.put("USERNAME_POSTGRES", System.getenv("USERNAME_POSTGRES"));
         result.put("PASSWORD_POSTGRES", System.getenv("PASSWORD_POSTGRES"));
+        result.put("HOST", System.getenv("HOST"));
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
