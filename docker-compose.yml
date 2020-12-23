@@ -1,28 +1,74 @@
 version: '3.8'
 services:
 
-  project:
+  project1:
     build: ./Project
+    container_name: project1
     ports:
-      - "8080:8080"
+      - "8081:8080"
     env_file: 
       - ./project.env
     environment: 
-      - DATABASE_DOMAIN=postgres
+      - HOST=host1
+      - DATABASE_DOMAIN=postgres1
     links:
-      - postgres
+      - postgres1
 
-  postgres:
+  project2:
+    build: ./Project
+    container_name: project2
+    ports:
+      - "8082:8080"
+    env_file: 
+      - ./project.env
+    environment: 
+      - HOST=host2
+      - DATABASE_DOMAIN=postgres2
+    links:
+      - postgres2
+
+  postgres1:
     image: 'postgres'
     ports:
       - "5433:5432"
-    container_name: postgres
+    container_name: postgres1
     restart: always
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=SimpleApp
     volumes: 
-      - postgresDB:/var/lib/postgresql/data
+      - postgres1DB:/var/lib/postgresql/data
+
+  postgres2:
+    image: 'postgres'
+    ports:
+      - "5434:5432"
+    container_name: postgres2
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=SimpleApp
+    volumes: 
+      - postgres2DB:/var/lib/postgresql/data
+    
+  nginx1:
+    build: ./nginx/app
+    container_name: nginx1
+    ports:
+      - "81:80"
+    links:
+      - project1
+
+  nginx2:
+    build: ./nginx/load_balancer
+    container_name: nginx2
+    ports:
+      - "82:80"
+    links:
+      - project1
+      - project2
+
 
 volumes:
-  postgresDB:
+  postgres1DB:
+  postgres2DB:
