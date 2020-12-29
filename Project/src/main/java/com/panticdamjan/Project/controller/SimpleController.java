@@ -21,6 +21,7 @@ public class SimpleController {
     @Autowired
     SimpleService simpleService;
 
+//    Main end point for REST API
     @GetMapping(path = "", produces = "application/json")
     public ResponseEntity getUser() {
         int counter = simpleService.incrementCounter();
