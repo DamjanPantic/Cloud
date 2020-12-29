@@ -15,7 +15,7 @@ services:
       - postgres1
 
   project2:
-    build: ./Project
+    image: 'panticdamjan/cloud-computing:latest'
     container_name: project2
     ports:
       - "8082:8080"
